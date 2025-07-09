@@ -1,0 +1,12 @@
+Command List Git
+
+Add file
+Git add
+
+Commit changes
+Git commit -m "Insert message"
+
+Now push file
+
+Push
+Git push
