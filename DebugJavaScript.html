@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>My First Web Page</h2>
+<p>My first paragraph.</p>
+
+<p>Never call document.write after the document has finished loading.
+It will overwrite the whole document.</p>
+
+<script>
+document.write(5 + 6);
+
+        function calculateMortgage() {
+            // Get the initial amount from the principal box
+            var principal;
+            principal = document.getElementById("principal").value;
+            
+
+            // update rate from the box
+            var rate;
+            rate = document.getElementById("rate").value / 100;
+            // get the years to calculate
+            var years = document.getElementById("years").value;
+
+            // Call the power funtion, pow, from Math
+            var monthlyRate;
+            //monthlyRate= Math.pw(1 + rate, years * 12);
+
+           /* if (rate == 0) {
+                document.getElementById("result").innerText = "Interest rate cannot be zero.";
+                return;
+            }*/
+            var monthlyPayment;
+
+            monthlyPayment = (principal * rate * years) / 12;
+
+            document.getElementById("result").innerText = `Your monthly payment is $${monthlyPayment.toFixed(2)}`;
+        }
+</script>
+
+    <h1>Mortgage Calculator</h1>
+    <form id="mortgageForm">
+        <table>
+            <tr>
+                <td><label for="principal">Loan Amount ($):</label></td>
+                <td><input type="number" id="principal" required></td>
+            </tr>
+            <tr>
+                <td><label for="rate">Interest Rate (%):</label></td>
+                <td><input type="number" id="rate" step="0.01" required></td>
+            </tr>
+            <tr>
+                <td><label for="years">Loan Term (years):</label></td>
+                <td><input type="number" id="years" required></td>
+            </tr>
+        </table>
+        <button type="button" onclick="calculateMortgage()">Calculate</button>
+    </form>
+    <p id="result"></p>
+    
+    
+
+
+</body>
+</html> 
