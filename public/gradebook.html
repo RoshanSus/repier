@@ -12,12 +12,53 @@
 	th, td {
 		border: 1px solid #ddd;
 		padding: 8px;
-		text-align: left;
+		text-align: left;                      
 }
 	th {
 		background-color: #f4f4f4;
 }
 	</style>
+	<script>
+	function fetchGradeData() {
+				// This function queries postgre database and return data
+		console.log("Fetching grade data...")
+		// create new request for http data
+		let xhr = new XMLHttpRequest();
+		let apiRoute = "/api/grades";
+		// when the request changes status, we run this anonyomous function
+		xhr.onreadystatechange = function(){
+			let results;
+			if(xhr.readyState === xhr.DONE){
+				if(xhr.status !== 200){
+					console.error("Could not get grades.".status.xhr.status);
+				}
+				populateGradebook(JSON.parse(xhr.resposeText));
+			}
+			
+		}.bind(this);
+		xhr.open("get", apiRoute, true);
+		xhr.send();
+		
+	}
+
+
+	function populateGradebook(data) {
+		// This function will take the fetched grade data and populate the table
+		console.log("populating gradebook with data:", data);
+		let tableElm = document.getElementById("Gradebook");
+			data.forEach(function(assignment){
+				let row = document.createElement("tr)")
+				let columns = [];
+				columns.name = document.createElement('td');
+				columns.name.appendChild(
+					document.createTextNode(assignment.total_grade)
+				);
+				tableElm.appendChild(row);
+			});
+	}
+	</script>
+	</head>
+	</head>
 </head>
 <Body>
 	<h1>Gradebook</h1>
@@ -31,7 +72,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			
+	
 		</tbody>
 	</table>
 	<script src="gradebook.js"></script>
